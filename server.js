@@ -14,9 +14,6 @@ app.use(cors())
 
 app.use('/new', newUrl)
 
-app.listen(process.env.PORT, () =>{
-  console.log('listening')
-})
+app.listen(process.env.PORT)
                         
-
 module.exports = app
