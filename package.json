@@ -14,7 +14,8 @@
     "cors": "^2.8.4",
     "create-react-app": "^1.4.3",
     "express": "^4.16.2",
-    "mongoose": "^4.13.9"
+    "mongoose": "^4.13.9",
+    "morgan": "^1.9.0"
   },
   "engines": {
     "node": "8.x"
