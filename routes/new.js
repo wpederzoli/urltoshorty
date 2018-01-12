@@ -21,7 +21,7 @@ router.get('/:url(*)', (req, res, next) => {
             }
           })
           
-          list.save().then(res.json(list.urls)).catch(err => res.status(400).send('unable to save to db'))
+          list.save().then(res.json(list.urls)).catch(err => {res.status(400).send('unable to save to db')})
         }else{
           const validUrl = `http://${url}`
           
@@ -32,15 +32,17 @@ router.get('/:url(*)', (req, res, next) => {
             }
           })
           
-          list.save().then(res.json(list.urls).catch(err=>res.status(400).send('unable to save to db'))
+          list.save().then(res.json(list.urls)).catch(err=>{res.status(400).send('unable to save to db')})
         }
+  }else{
+    
+    res.json({
+      original: url,
+      error: 'Invalid Url'
+    }) 
   }
   
-  
-  
-  res.json({
-    original: url
-  })
-}) 
+})  
+
 
 module.exports = router
