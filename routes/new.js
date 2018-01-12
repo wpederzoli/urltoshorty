@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const urlsList = require('../models/urls_schema')
 
 router.get('/:url(*)', (req, res, next) => {
   const url = req.params.url
@@ -10,9 +11,29 @@ router.get('/:url(*)', (req, res, next) => {
         const re = /^(http|https):\/\//
         const regex = new RegExp(re)
         
-        url.match(regex) ? {
+        const short = Math.floor(Math.random()*10000)
+        
+        if(url.match(regex)){
+          const list = new urlsList({
+            urls:{
+              original: url,
+              shorty: short
+            }
+          })
           
-        } : null
+          list.save().then(res.json(list.urls)).catch(err => res.status(400).send('unable to save to db'))
+        }else{
+          const validUrl = `http://${url}`
+          
+          const list = new urlsList({
+            urls:{
+              original: validUrl,
+              shorty: short
+            }
+          })
+          
+          list.save().then(res.json(list.urls).catch(err=>res.status(400).send('unable to save to db'))
+        }
   }
   
   
