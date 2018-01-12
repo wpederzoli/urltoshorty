@@ -8,6 +8,7 @@ const cors = require('cors')
 const app = express()
 
 const newUrl = require('./routes/new')
+const redirect = require('./routes/redirect')
 
 mongoose.Promise = require('bluebird')
 mongoose.connect('mongodb://anonymus:urlmicro@ds251747.mlab.com:51747/shorties')
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/new', newUrl)
+app.use('/:url', redirect)
 
 app.listen(process.env.PORT)
                         
